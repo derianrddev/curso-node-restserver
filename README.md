@@ -13,7 +13,7 @@ git clone https://github.com/derianrddev/curso-node-restserver.git
 move to the folder
 
 ```sh
-cd first-node-express-app
+cd curso-node-restserver
 ```
 
 install dependencies:
