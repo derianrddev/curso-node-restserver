@@ -23,7 +23,7 @@ const existUserById = async (id = "") => {
       throw new Error(`ID ${ id } does not exist`);
     }
   } else {
-    throw new Error(`El id ${ id } is not valid`);
+    throw new Error(`The id ${ id } is not valid`);
   }
 }
 

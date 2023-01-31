@@ -12,7 +12,12 @@ const {
   isUniqueEmail,
   existUserById,
 } = require("../helpers/dbValidators");
-const { validFields } = require("../middlewares/validFields");
+const {
+  validFields,
+  validJWT,
+  isAdminRole,
+  hasRole,
+} = require("../middlewares");
 
 const router = Router();
 
@@ -57,10 +62,17 @@ router.put(
   updateUser
 );
 
-router.delete("/:id", [
-  check("id").custom(existUserById),
-  validFields,
-], deleteUser);
+router.delete(
+  "/:id",
+  [
+    validJWT,
+    // isAdminRole,
+    hasRole("ADMIN_ROLE", "SALES_ROLE"),
+    check("id").custom(existUserById),
+    validFields,
+  ],
+  deleteUser
+);
 
 router.patch("/", patchUser);
 
