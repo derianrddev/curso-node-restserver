@@ -32,7 +32,11 @@
         // console.log('Id token', response.credential);
         const body = { idToken: response.credential };
 
-        fetch("http://localhost:8080/auth/google", {
+        const url = window.location.hostname.includes("localhost")
+          ? "http://localhost:8080/auth/google"
+          : "https://curso-node-restserver-production-6adb.up.railway.app/auth/google";
+
+        fetch(url, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(body),
