@@ -1,15 +1,23 @@
 const express = require("express");
 const cors = require("cors");
-const usersRoutes = require("../routes/users");
 const authRoutes = require("../routes/auth");
+const categoriesRoutes = require("../routes/categories");
+const productsRoutes = require("../routes/products");
+const searchRoutes = require("../routes/search");
+const usersRoutes = require("../routes/users");
 const { dbConnection } = require("../database/config");
 
 class Server {
   constructor() {
     this.app = express();
     this.port = process.env.PORT || 3000;
-    this.usersPath = "/users";
-    this.authPath = "/auth";
+    this.paths = {
+      auth: "/auth",
+      categories: "/categories",
+      products: "/products",
+      search: "/search",
+      users: "/users",
+    };
 
     // Connect to database
     this.connectDB();
@@ -37,8 +45,11 @@ class Server {
   }
 
   routes() {
-    this.app.use(this.authPath, authRoutes);
-    this.app.use(this.usersPath, usersRoutes);
+    this.app.use(this.paths.auth, authRoutes);
+    this.app.use(this.paths.categories, categoriesRoutes);
+    this.app.use(this.paths.products, productsRoutes);
+    this.app.use(this.paths.search, searchRoutes);
+    this.app.use(this.paths.users, usersRoutes);
   }
 
   listen() {

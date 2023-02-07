@@ -57,6 +57,7 @@ router.put(
     // check("id", "Not a valid ID").isMongoId(),
     check("id").custom(existUserById),
     check("role").optional().custom(isValidRole),
+    check("email").custom(isUniqueEmail),
     validFields,
   ],
   updateUser
