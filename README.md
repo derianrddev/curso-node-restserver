@@ -1,6 +1,6 @@
-# RESTServer
+# REST API 
 
-Initial configuration of a REST server with Node.js.
+REST API with Node.js, Express and MongoDB of a grocery store with a CRUD of users, categories and products, user authentication with email and password and google and searches.
 
 ### Installation
 
